@@ -108,3 +108,127 @@ public class CondicionalPrograma {
 ```
 
 > Nota: Recuerda que solo un bloque se ejecutará y será la primera condición que sea verdadera.
+
+
+
+## Expresiones condicionales ternarias
+
+Las expresiones condicionales usan los operadores `?:`
+
+```
+expresión_boleana ? expresión1 : expressión2
+```
+
+Se evalua la expresión_boleana, si es `verdadera` entonces se usará el valor de
+`expressión1`, de lo contrario se usará el valor de `expressión2`
+
+Ejemplo:
+```java
+String respuesta = (a >= 0)? "a es positivo o cero" : "a es negativo";
+```
+
+Es código es equivalente al siguiente:
+
+```java
+String respuesta;
+
+if (a >= 0) {
+  a = "a es positivo o cero";
+} else {
+  a = "a es negativo";
+}
+```
+
+## SWITCH (Bloque condicional switch)
+
+La sentencia condicional `switch` es básicamente una versión corta o
+simplificada de muchos bloques `if...else`. El bloque `switch` evalua `char`,
+`bytes`, `short`, `int`, `enum`*, `String`* y basando en el valor de entrada,
+salta a uno de los casos y ejecuta la acción correspondiente hasta llegar a un
+comando `break` o el final del bloque. Si el valor no corresponde a unos de los
+casos especificados, se ejecturá el caso (opcional) default.
+
+> \* La compatibilidad depende de la versión de Java que se utilice.
+La estructura del comando es la siguiente:
+
+```
+switch (value_to_evaluate) {
+    case value1:
+        statement1.1
+        ...
+        statement1.n
+        break;
+    case value2:
+        statement2.1
+        ...
+        statement2.n
+        break;
+    default:
+        statementn.1
+        ...
+        statementn.n
+} 
+```
+
+Ejemplo:
+
+```java
+int i = 3;
+switch(i) {
+    case 1:
+        // i no es igual a 1, entonces la siguiente código no se ejecutará.
+        System.out.println("i es igual a 1");
+        break;
+    case 2:
+        // i no es igual a 2, entonces la siguiente código no se ejecutará.
+        System.out.println("i es igual a 2");
+        break;
+    default:
+        // i no concuerda con ninguno de los casos hasta este punto, entonces
+        // la operación default se ejecutará.
+        System.out.println("i es algo que no es 1 o 2");
+}
+```
+
+Si un caso (`case`) no termina con un comando `break`, entonces el siguiente
+caso se revisará; en caso contrario se saltará al final del bloque. 
+
+Revisa los siguientes ejemplos:
+
+```java
+int i = -1;
+switch(i) {
+    case -1:
+    case 1:
+        // i=-1, como no tiene una comando `break`, caerá en este caso y
+        // ejecutará el siguiente código.
+        System.out.println("i es 1 o -1");
+        break;
+    case 0:
+        // El comando `break` es usando antes de llegar a este caso, por lo
+        // que si i=1 o i=-1 el siguiente código no se ejecutará.
+        System.out.println("i es 0");
+}
+```
+
+```java
+String dia = "Lunes";
+switch(day) {
+    case "Lunes":
+        // Como dia == "Lunes", este comando se ejecutará.
+        System.out.println("Lunes son lo peor!");
+        break;
+    case "Martes":
+    case "Miercoes":
+    case "Jueves":
+        System.out.println("Entre semana no está mal.");
+        break;
+    case "Viernes":
+    case "Sabado":
+    case "Domingo":
+        System.out.println("Fines de semana son lo mejor!");
+        break;
+    default:
+        throw new IllegalArgumentException("Día no válido de la semana:" + dia);
+}
+```
